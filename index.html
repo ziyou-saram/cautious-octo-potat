@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:x-transition="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Farm</title>
+    <link rel="stylesheet" href="./src/style/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Syne:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+  </head>
+  <body class="static bg-black">
+    <div>
+      <header class="bg-black" x-data="{ isOpen: false }">
+        <div
+          x-data="{ open: false }"
+          class="mx-auto flex max-w-screen-xl flex-col px-4 md:flex-row md:items-center md:justify-between md:px-6 lg:px-8"
+        >
+          <div class="flex flex-row items-center justify-between p-8">
+            <a href="#" class="h-16 w-36">
+              <img src="/src/img/AI_Logo.png" alt="" />
+            </a>
+            <button
+              class="focus:shadow-outline rounded-lg text-white focus:outline-none md:hidden"
+              @click="open = !open"
+            >
+              <svg fill="currentColor" viewBox="0 0 20 20" class="h-6 w-6">
+                <path
+                  x-show="!open"
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path>
+                <path
+                  x-show="open"
+                  fill-rule="evenodd"
+                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <nav
+            :class="{'flex': open, 'hidden': !open}"
+            class="hidden flex-grow flex-col pb-4 md:flex md:flex-row md:justify-end md:pb-0"
+          >
+            <a
+              class="focus:shadow-outline md:text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#about"
+              >About AI</a
+            >
+            <a
+              class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#video"
+              >Video</a
+            >
+            <a
+              class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#install"
+              >Install</a
+            >
+            <a
+              class="focus:shadow-outline md:text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#platforms"
+              >Platforms</a
+            >
+            <a
+              class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#products"
+              >Our Products</a
+            >
+            <a
+              class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+              href="#contacts"
+              >Contacts</a
+            >
+            <div class="flex flex-row">
+              <a
+                class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+                href="cn_index.html"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="3em"
+                  height="3em"
+                  class="h-8 w-8"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 64 64"
+                >
+                  <circle cx="32" cy="32" r="30" fill="#ed4c5c" />
+                  <path
+                    fill="#ffe62e"
+                    d="m22 28.4l8 5.6l-3-9.2l8-5.8h-9.9L22 10l-3 9H9l8 5.8l-3 9.2zm13.3 6.9l-2.3.5l2.2.9V39l1.5-1.7l2.2.8l-1.3-1.9l1.4-1.8l-2.3.5l-1.4-1.9zm3.4-6.8L37 30l2.3-.2l1 2.2l.4-2.3l2.3-.2l-2-1.2l.5-2.3l-1.7 1.5l-2-1.2zm.6-7.8L40 23l.7-2.2H43l-1.8-1.4l.7-2.3l-1.9 1.4l-1.8-1.5l.7 2.3l-1.9 1.3zm-4-8V15l1.4-1.9l2.3.5l-1.4-1.8l1.3-1.9l-2.2.9L35.2 9v2.3l-2.2.9z"
+                  />
+                </svg>
+              </a>
+              <a
+                class="focus:shadow-outline md::text-md mt-2 rounded-lg bg-transparent px-4 py-2 text-sm font-semibold text-white hover:bg-gray-900 hover:text-slate-50 focus:bg-gray-200 focus:text-gray-900 focus:outline-none md:mt-0 md:ml-4"
+                href="jp_index.html"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="3em"
+                  height="3em"
+                  class="h-8 w-8"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 64 64"
+                >
+                  <circle cx="32" cy="32" r="30" fill="#f5f5f5" />
+                  <circle cx="32" cy="32" r="12" fill="#ed4c5c" />
+                </svg>
+              </a>
+            </div>
+          </nav>
+        </div>
+
+        <section class="bg-black">
+          <div class="js-show-on-scroll mx-auto max-w-5xl px-0 py-16">
+            <div class="items-center md:flex md:space-x-6">
+              <div class="delay-1500 md:w-1/2">
+                <h1
+                  class="title text-center text-3xl font-bold text-white md:text-left md:text-5xl"
+                >
+                  Improve your poker experience with AI FARM
+                </h1>
+                <p class="mt-4 text-center text-gray-300 md:text-left">
+                  BOT based on artificial intelligence
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start">
+                  <a
+                    href="#about"
+                    class="mr-2 block flex w-40 items-center justify-center rounded-sm border border-teal-500 py-4 px-6 font-bold text-teal-500 hover:bg-teal-500 hover:text-slate-50"
+                  >
+                    More
+                  </a>
+                  <a
+                    href="#contacts"
+                    class="ml-2 block flex w-40 items-center justify-center rounded-sm border border-purple-800 py-4 px-6 font-bold text-purple-500 hover:border-purple-900 hover:bg-purple-900 hover:text-slate-50"
+                  >
+                    Contacts
+                  </a>
+                </div>
+              </div>
+
+              <div class="mt-8 md:mt-0 md:w-1/2">
+                <div class="flex items-center justify-center">
+                  <div class="max-w-md">
+                    <img
+                      class="w-full object-cover object-center"
+                      style="height: 600px"
+                      src="/src/img/Group 1.png"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </header>
+
+      <section class="bg-black" id="about">
+        <div class="mx-auto my-32 max-w-5xl px-6 py-16">
+          <div
+            data-animate-type="motion-safe:animate-fadeIn"
+            class="js-show-on-scroll flex-col rounded-md bg-zinc-900 px-6 py-8 text-center shadow-md shadow-teal-300"
+          >
+            <h2 class="title text-3xl font-extrabold text-slate-50 md:text-5xl">
+              Don’t play Yourself, AI Will Do It
+            </h2>
+            <p class="mt-6 block text-xl text-teal-200 md:px-32">
+              AI FARM is an automatic poker AI<br />Software Uses Artificial
+              Intelligence Algorithms to Analyze Player and Online Poker Matches
+              and Learn to Develop Best Card Strategies for Poker Machines
+            </p>
+          </div>
+
+          <div class="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div
+              class="js-show-on-scroll overflow-hidden rounded-md bg-zinc-900 px-6 py-8 opacity-0 shadow-md shadow-sky-600"
+            >
+              <h2
+                class="title animate-pulse text-3xl font-semibold uppercase"
+                style="
+                  color: #fff;
+                  text-shadow: 0 0 5px rgb(137, 137, 137),
+                    0 0 10px rgb(255, 255, 255), 0 0 20px rgb(0, 4, 255),
+                    0 0 30px rgb(0, 4, 255), 0 0 40px rgb(0, 81, 255);
+                "
+              >
+                Safe
+              </h2>
+              <p class="mt-4 max-w-md text-slate-50">
+                Our AI is completely safe to use. We use advanced algorithms to
+                avoid any detection and account bans
+              </p>
+            </div>
+
+            <div
+              class="js-show-on-scroll overflow-hidden rounded-md bg-zinc-900 px-6 py-8 shadow-md shadow-amber-500"
+            >
+              <h2
+                class="title animate-pulse text-3xl font-semibold uppercase"
+                style="
+                  color: #fff;
+                  text-shadow: 0 0 5px rgb(137, 137, 137),
+                    0 0 10px rgb(255, 255, 255), 0 0 20px rgb(251, 255, 0),
+                    0 0 30px rgb(251, 255, 0), 0 0 40px rgb(255, 208, 0);
+                "
+              >
+                Growth
+              </h2>
+              <p class="mt-4 max-w-md text-slate-50">
+                With our software you can expand your farm up to 1000 devices in
+                just one admin panel. Upgrade, install, and manage all your
+                phones in one click
+              </p>
+            </div>
+
+            <div
+              class="js-show-on-scroll overflow-hidden rounded-md bg-zinc-900 px-6 py-8 shadow-md shadow-pink-500"
+            >
+              <h2
+                class="title animate-pulse text-3xl font-semibold uppercase"
+                style="
+                  color: #fff;
+                  text-shadow: 0 0 5px rgb(137, 137, 137),
+                    0 0 10px rgba(255, 255, 255, 0.406),
+                    0 0 20px rgb(247, 0, 255), 0 0 20px rgb(247, 0, 255),
+                    0 0 40px rgb(255, 0, 140);
+                "
+              >
+                Easy
+              </h2>
+              <p class="mt-4 max-w-md text-slate-50">
+                Our bot does not require any other programs to run. Just install
+                the software and enjoy the game
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-cover bg-fixed"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1561034646-e37eb9c48abd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+          height: auto;
+        "
+        id="video"
+      >
+        <div class="mx-auto max-w-5xl px-6 py-16">
+          <div class="flex-col text-center">
+            <h2 class="title text-3xl font-extrabold text-slate-50 md:text-5xl">
+              Game Demonstration
+            </h2>
+          </div>
+
+          <div class="aspect-w-16 aspect-h-9 mt-8 rounded-md">
+            <video
+              class="rounded-lg"
+              controls
+              preload="none"
+              poster="src/img/poster.png"
+            >
+              <source src="/src/video/english.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-black" id="install">
+        <div class="container mx-auto my-32 max-w-5xl px-6 py-10">
+          <h1
+            class="title text-center text-3xl font-extrabold capitalize text-slate-50 md:text-5xl"
+          >
+            How to Install
+          </h1>
+          <div
+            class="js-show-on-scroll mt-8 grid grid-cols-1 gap-8 md:grid-cols-2 xl:mt-12 xl:grid-cols-3 xl:gap-12"
+          >
+            <div
+              class="space-y-3 rounded-xl border-2 border-blue-400 bg-zinc-900 p-8"
+            >
+              <span class="inline-block text-blue-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="2em"
+                  height="2em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="#0088FF"
+                    d="M267.206 8.765c-130.1 0-235.566 105.594-235.566 235.851c0 30.486 5.778 59.62 16.297 86.367L8.015 461.423a12.606 12.606 0 0 0-.757 2.439l-.052.138h.03c-.729 4 .302 8.081 3.214 11.183c2.909 3.101 6.996 4.409 10.915 3.924a.114.114 0 0 0 0 .027l.165-.027c.865-.12 1.719-.314 2.55-.609l124.823-29.9c34.767 20.256 75.178 31.867 118.301 31.867c130.1 0 235.566-105.594 235.566-235.85S397.305 8.765 267.206 8.765z"
+                  />
+                </svg>
+              </span>
+
+              <p
+                class="text-2xl font-semibold capitalize text-slate-50 dark:text-white"
+              >
+                Contact with support manager
+              </p>
+            </div>
+
+            <div
+              class="space-y-3 rounded-xl border-2 border-orange-400 bg-zinc-900 p-8"
+            >
+              <span class="inline-block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="2em"
+                  height="2em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 1200 1200"
+                >
+                  <path
+                    fill="#f29d38"
+                    d="M600 0C268.63 0 0 268.63 0 600s268.63 600 600 600c331.369 0 600-268.631 600-600C1200 268.63 931.369 0 600 0zm0 1069.565c-259.37 0-469.565-210.261-469.565-469.565S340.63 130.435 600 130.435c259.369 0 469.565 210.261 469.565 469.565S859.369 1069.565 600 1069.565zm117.392-720.652H482.608v266.739H335.87L600 864.13l264.13-248.478H717.391l.001-266.739z"
+                  />
+                </svg>
+              </span>
+
+              <p class="text-2xl font-semibold capitalize text-slate-50">
+                Download AI FARM
+              </p>
+            </div>
+
+            <div
+              class="space-y-3 rounded-xl border-2 border-pink-500 bg-zinc-900 p-8"
+            >
+              <span class="inline-block">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                  role="img"
+                  width="2em"
+                  height="2em"
+                  preserveAspectRatio="xMidYMid meet"
+                  viewBox="0 0 256 256"
+                >
+                  <path
+                    fill="#e93ef6"
+                    d="M202.2 200.8a103.8 103.8 0 0 0 0-145.6a2.3 2.3 0 0 0-.7-.7a2.3 2.3 0 0 0-.7-.7a103.8 103.8 0 0 0-145.6 0a2.3 2.3 0 0 0-.7.7a2.3 2.3 0 0 0-.7.7a103.8 103.8 0 0 0 0 145.6l.7.7a2.3 2.3 0 0 0 .7.7a103.8 103.8 0 0 0 145.6 0a2.3 2.3 0 0 0 .7-.7a2.3 2.3 0 0 0 .7-.7ZM40.4 136h24.1a63.6 63.6 0 0 0 13 31.2l-17.1 17.1a87.5 87.5 0 0 1-20-48.3Zm20-64.3l17.1 17.1a63.6 63.6 0 0 0-13 31.2H40.4a87.5 87.5 0 0 1 20-48.3ZM215.6 120h-24.1a63.6 63.6 0 0 0-13-31.2l17.1-17.1a87.5 87.5 0 0 1 20 48.3ZM128 176a48 48 0 1 1 48-48a48 48 0 0 1-48 48Zm39.2-98.5a63.6 63.6 0 0 0-31.2-13V40.4a87.5 87.5 0 0 1 48.3 20Zm-47.2-13a63.6 63.6 0 0 0-31.2 13L71.7 60.4a87.5 87.5 0 0 1 48.3-20Zm-31.2 114a63.6 63.6 0 0 0 31.2 13v24.1a87.5 87.5 0 0 1-48.3-20Zm47.2 13a63.6 63.6 0 0 0 31.2-13l17.1 17.1a87.5 87.5 0 0 1-48.3 20Zm42.5-24.3a63.6 63.6 0 0 0 13-31.2h24.1a87.5 87.5 0 0 1-20 48.3Z"
+                  />
+                </svg>
+              </span>
+
+              <p class="text-2xl font-semibold capitalize text-slate-50">
+                Play and Win
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-black" id="platforms">
+        <div class="mx-auto my-32 max-w-5xl px-6 py-16 text-center">
+          <h2 class="title text-3xl font-semibold text-slate-50 md:text-5xl">
+            Rooms
+          </h2>
+          <div
+            class="mt-6 grid grid-cols-2 items-center justify-center gap-8 lg:grid-cols-4"
+          >
+            <div>
+              <img
+                class="js-show-on-scroll h-64 w-auto rounded-md object-fill object-center shadow"
+                src="./src/img/hhpok.png"
+              />
+            </div>
+
+            <div>
+              <img
+                class="js-show-on-scroll h-64 w-64 rounded-md object-fill object-center shadow"
+                src="./src/img/wepok.png"
+              />
+            </div>
+
+            <div>
+              <img
+                class="js-show-on-scroll h-64 w-64 rounded-md object-fill object-center shadow"
+                src="./src/img/xPoker.png"
+              />
+            </div>
+
+            <div>
+              <img
+                class="js-show-on-scroll h-64 w-64 rounded-md object-cover object-center shadow"
+                src="./src/img/kkPoker.png"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="bg-fixed object-cover object-center"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1561034646-e37eb9c48abd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+        "
+      >
+        <div class="mx-auto my-32 max-w-5xl px-6 py-32">
+          <div class="items-center justify-around lg:flex">
+            <div class="w-full lg:w-1/2">
+              <h1
+                role="heading"
+                class="title mt-3 text-center text-3xl font-bold leading-10 text-slate-50 md:text-5xl"
+              >
+                Download <br />Price List
+              </h1>
+            </div>
+            <div
+              class="relative mt-12 w-full md:px-8 lg:mt-0 lg:w-7/12 xl:w-1/2"
+              role="list"
+            >
+              <div
+                role="listitem"
+                class="relative z-30 cursor-pointer rounded-lg bg-zinc-900 p-8 shadow"
+              >
+                <div class="items-center justify-between md:flex">
+                  <p class="text-2xl font-semibold leading-6 text-slate-50">
+                    WE Poker
+                  </p>
+                </div>
+              </div>
+              <a href="./src/files/HH_Poker.png" download="HH Poker Price List">
+                <div
+                  role="listitem"
+                  class="relative z-30 mt-3 flex cursor-pointer rounded-lg bg-zinc-900 shadow"
+                >
+                  <div
+                    class="h-auto w-2.5 rounded-tl-md rounded-bl-md bg-purple-700"
+                  ></div>
+                  <div class="w-full p-8">
+                    <div class="items-center justify-between md:flex">
+                      <p class="text-2xl font-semibold leading-6 text-slate-50">
+                        HH Poker
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+              <div
+                role="listitem"
+                class="relative z-30 mt-3 cursor-pointer rounded-lg bg-zinc-900 p-8 shadow"
+              >
+                <div class="items-center justify-between md:flex">
+                  <p class="text-2xl font-semibold leading-6 text-slate-50">
+                    X-Poker
+                  </p>
+                </div>
+              </div>
+              <div
+                role="listitem"
+                class="relative z-30 mt-3 cursor-pointer rounded-lg bg-zinc-900 p-8 shadow"
+              >
+                <div class="items-center justify-between md:flex">
+                  <p class="text-2xl font-semibold leading-6 text-slate-50">
+                    KK Poker
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="flex items-center justify-center bg-black" id="products">
+        <div class="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-4">
+          <h2
+            class="title text-center text-3xl font-semibold text-slate-50 md:text-5xl"
+          >
+            Products
+          </h2>
+          <div class="grid grid-cols-2 gap-4 py-8 md:grid-cols-2">
+            <a href="https://pokerbotai.com" target="_blank">
+              <div
+                class="js-show-on-scroll col-span-1 flex items-center justify-center p-6 md:col-span-2 lg:col-span-1"
+              >
+                <img src="./src/img/dev1.svg" alt="" />
+              </div>
+            </a>
+            <div
+              class="js-show-on-scroll col-span-1 flex items-center justify-center p-6 md:col-span-2 lg:col-span-1"
+            >
+              <img src="./src/img/dev2.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="relative mt-20 bg-fixed"
+        id="contacts"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1561034646-e37eb9c48abd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+        "
+      >
+        <section>
+          <div class="flex items-center justify-center py-24">
+            <div
+              class="flex max-w-5xl items-center justify-center rounded-md bg-zinc-900 p-10"
+            >
+              <div class="glassmorph-container">
+                <a href="#">
+                  <div class="flex flex-row space-x-4 py-6">
+                    <div class="text-white">
+                      <svg
+                        width="48"
+                        height="48"
+                        viewBox="0 0 48 48"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <circle
+                          cx="24"
+                          cy="24"
+                          r="24"
+                          fill="url(#paint0_linear_16_172)"
+                        />
+                        <path
+                          d="M10.7874 24.0404C17.7667 21.0768 22.4206 19.123 24.7493 18.179C31.3979 15.4838 32.7795 15.0156 33.68 15.0002C33.878 14.9968 34.3208 15.0446 34.6077 15.2714C34.8499 15.463 34.9165 15.7217 34.9484 15.9033C34.9803 16.0849 35.02 16.4986 34.9884 16.8219C34.6281 20.5114 33.0692 29.465 32.276 33.5974C31.9404 35.3459 31.2796 35.9322 30.6399 35.9896C29.2496 36.1143 28.1938 35.0941 26.8473 34.2338C24.7401 32.8876 23.5498 32.0496 21.5044 30.736C19.1407 29.2179 20.673 28.3835 22.0201 27.0199C22.3726 26.663 28.4983 21.2326 28.6169 20.74C28.6317 20.6784 28.6455 20.4488 28.5055 20.3275C28.3655 20.2062 28.1589 20.2477 28.0098 20.2807C27.7985 20.3274 24.4323 22.4958 17.9113 26.786C16.9558 27.4254 16.0904 27.737 15.315 27.7206C14.4602 27.7026 12.8159 27.2496 11.5935 26.8623C10.0942 26.3873 8.90254 26.1362 9.0063 25.3295C9.06035 24.9093 9.65403 24.4796 10.7874 24.0404Z"
+                          fill="white"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_16_172"
+                            x1="0.177999"
+                            y1="0"
+                            x2="0.177999"
+                            y2="47.644"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#2AABEE" />
+                            <stop offset="1" stop-color="#229ED9" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div
+                      class="font-montserrat text-3xl font-semibold text-white"
+                    >
+                      @IOSGOLIATH
+                    </div>
+                  </div>
+                </a>
+
+                <a href="#">
+                  <div class="flex flex-row space-x-4">
+                    <div class="text-white">
+                      <svg
+                        width="48"
+                        height="48"
+                        viewBox="0 0 48 48"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          clip-rule="evenodd"
+                          d="M24 0C37.2553 0 48 10.7447 48 24C48 37.2553 37.2553 48 24 48C10.7447 48 0 37.2553 0 24C0 10.7447 10.7447 0 24 0Z"
+                          fill="url(#paint0_linear_16_177)"
+                        />
+                        <path
+                          d="M23.7131 16.878C22.9987 16.8911 22.3959 17.4986 22.4081 18.1933C22.4212 18.9124 23.0128 19.4749 23.7478 19.4664C24.4837 19.4571 25.0416 18.8889 25.035 18.1539C25.0284 17.433 24.4397 16.8649 23.7131 16.878ZM15.48 16.878C14.7525 16.8564 14.1534 17.4133 14.1319 18.1314C14.1103 18.8589 14.6662 19.4421 15.4003 19.4599C16.1278 19.4786 16.7372 18.9218 16.7644 18.213C16.7916 17.5071 16.1756 16.8986 15.48 16.878ZM19.8806 29.899C18.7491 29.7583 17.7187 29.6046 16.6828 29.5174C16.3256 29.4874 15.9009 29.5296 15.5972 29.7011C14.5912 30.2683 13.6266 30.9096 12.4837 31.624C12.6937 30.6752 12.8287 29.8446 13.0697 29.0458C13.2459 28.458 13.1644 28.1318 12.6234 27.7493C5.60999 22.7974 7.82249 13.6886 15.6675 11.1255C21.7809 9.12863 29.4516 12.6414 30.0825 19.3905C24.1903 19.698 19.3519 23.6599 19.8806 29.899Z"
+                          fill="white"
+                        />
+                        <path
+                          d="M32.8781 25.1786C32.3119 25.1748 31.8309 25.638 31.8075 26.2098C31.7831 26.822 32.2584 27.3236 32.864 27.3255C33.449 27.3273 33.9122 26.8848 33.9328 26.3017C33.9562 25.6886 33.48 25.1833 32.8781 25.1786ZM27.239 26.3008C27.2625 25.6905 26.7722 25.1786 26.1609 25.1758C25.5562 25.1739 25.05 25.6923 25.0706 26.2933C25.0903 26.867 25.5741 27.332 26.1534 27.333C26.7319 27.333 27.2175 26.882 27.239 26.3008ZM33.9328 36.318C33.0412 36.2251 32.1037 36.7398 31.1709 36.8345C28.3303 37.1251 25.785 36.3339 23.6859 34.3923C19.695 30.7005 20.265 25.0398 24.8831 22.0145C28.9875 19.3258 35.0072 20.222 37.9003 23.9523C40.4259 27.2083 40.1287 31.5301 37.0462 34.2658C35.6072 35.5417 36.2109 35.9486 36.585 37.4317C35.7562 37.0633 34.8375 36.4126 33.9328 36.318Z"
+                          fill="white"
+                        />
+                        <defs>
+                          <linearGradient
+                            id="paint0_linear_16_177"
+                            x1="6.35906"
+                            y1="7.72687"
+                            x2="44.4553"
+                            y2="36.5606"
+                            gradientUnits="userSpaceOnUse"
+                          >
+                            <stop stop-color="#3CAF41" />
+                            <stop offset="1" stop-color="#58C72C" />
+                          </linearGradient>
+                        </defs>
+                      </svg>
+                    </div>
+                    <div
+                      class="font-montserrat text-3xl font-semibold text-white hover:inline-block"
+                    >
+                      SANBRAZI
+                    </div>
+                  </div>
+                </a>
+                <div class="flex justify-center">
+                  <a href="#">
+                    <img src="./src/img/raynoqr.png" alt="" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <div class="mt-20 flex flex-shrink-0 justify-end p-4">
+      <a href="#" class="group block flex-shrink-0">
+        <div class="flex items-center">
+          <div
+            @click.away="open = false"
+            class="fixed bottom-8 right-8"
+            x-data="{ open: false }"
+          >
+            <div class="relative">
+              <div
+                x-show="open"
+                x-transition:enter="transition ease-out duration-100"
+                x-transition:enter-start="transform opacity-0 scale-95"
+                x-transition:enter-end="transform opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-75"
+                x-transition:leave-start="transform opacity-100 scale-100"
+                x-transition:leave-end="transform opacity-0 scale-95"
+                class="absolute bottom-0 right-0 mt-2 mr-8 w-56 origin-top-right rounded-md shadow-lg"
+              >
+                <div class="shadow-xs relative rounded-md bg-zinc-900 py-1">
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 transition duration-150 ease-in-out hover:bg-zinc-800"
+                  >
+                    <div class="flex flex-row items-center space-x-2">
+                      <div class="text-white">
+                        <svg
+                          width="48"
+                          height="48"
+                          viewBox="0 0 48 48"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <circle
+                            cx="24"
+                            cy="24"
+                            r="24"
+                            fill="url(#paint0_linear_16_172)"
+                          />
+                          <path
+                            d="M10.7874 24.0404C17.7667 21.0768 22.4206 19.123 24.7493 18.179C31.3979 15.4838 32.7795 15.0156 33.68 15.0002C33.878 14.9968 34.3208 15.0446 34.6077 15.2714C34.8499 15.463 34.9165 15.7217 34.9484 15.9033C34.9803 16.0849 35.02 16.4986 34.9884 16.8219C34.6281 20.5114 33.0692 29.465 32.276 33.5974C31.9404 35.3459 31.2796 35.9322 30.6399 35.9896C29.2496 36.1143 28.1938 35.0941 26.8473 34.2338C24.7401 32.8876 23.5498 32.0496 21.5044 30.736C19.1407 29.2179 20.673 28.3835 22.0201 27.0199C22.3726 26.663 28.4983 21.2326 28.6169 20.74C28.6317 20.6784 28.6455 20.4488 28.5055 20.3275C28.3655 20.2062 28.1589 20.2477 28.0098 20.2807C27.7985 20.3274 24.4323 22.4958 17.9113 26.786C16.9558 27.4254 16.0904 27.737 15.315 27.7206C14.4602 27.7026 12.8159 27.2496 11.5935 26.8623C10.0942 26.3873 8.90254 26.1362 9.0063 25.3295C9.06035 24.9093 9.65403 24.4796 10.7874 24.0404Z"
+                            fill="white"
+                          />
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear_16_172"
+                              x1="0.177999"
+                              y1="0"
+                              x2="0.177999"
+                              y2="47.644"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stop-color="#2AABEE" />
+                              <stop offset="1" stop-color="#229ED9" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
+                      <div
+                        class="font-montserrat text-sm font-semibold text-white"
+                      >
+                        @IOSGOLIATH
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 transition duration-150 ease-in-out hover:bg-zinc-800"
+                  >
+                    <div class="flex flex-row items-center space-x-2">
+                      <div class="text-white">
+                        <svg
+                          width="48"
+                          height="48"
+                          viewBox="0 0 48 48"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M24 0C37.2553 0 48 10.7447 48 24C48 37.2553 37.2553 48 24 48C10.7447 48 0 37.2553 0 24C0 10.7447 10.7447 0 24 0Z"
+                            fill="url(#paint0_linear_16_177)"
+                          />
+                          <path
+                            d="M23.7131 16.878C22.9987 16.8911 22.3959 17.4986 22.4081 18.1933C22.4212 18.9124 23.0128 19.4749 23.7478 19.4664C24.4837 19.4571 25.0416 18.8889 25.035 18.1539C25.0284 17.433 24.4397 16.8649 23.7131 16.878ZM15.48 16.878C14.7525 16.8564 14.1534 17.4133 14.1319 18.1314C14.1103 18.8589 14.6662 19.4421 15.4003 19.4599C16.1278 19.4786 16.7372 18.9218 16.7644 18.213C16.7916 17.5071 16.1756 16.8986 15.48 16.878ZM19.8806 29.899C18.7491 29.7583 17.7187 29.6046 16.6828 29.5174C16.3256 29.4874 15.9009 29.5296 15.5972 29.7011C14.5912 30.2683 13.6266 30.9096 12.4837 31.624C12.6937 30.6752 12.8287 29.8446 13.0697 29.0458C13.2459 28.458 13.1644 28.1318 12.6234 27.7493C5.60999 22.7974 7.82249 13.6886 15.6675 11.1255C21.7809 9.12863 29.4516 12.6414 30.0825 19.3905C24.1903 19.698 19.3519 23.6599 19.8806 29.899Z"
+                            fill="white"
+                          />
+                          <path
+                            d="M32.8781 25.1786C32.3119 25.1748 31.8309 25.638 31.8075 26.2098C31.7831 26.822 32.2584 27.3236 32.864 27.3255C33.449 27.3273 33.9122 26.8848 33.9328 26.3017C33.9562 25.6886 33.48 25.1833 32.8781 25.1786ZM27.239 26.3008C27.2625 25.6905 26.7722 25.1786 26.1609 25.1758C25.5562 25.1739 25.05 25.6923 25.0706 26.2933C25.0903 26.867 25.5741 27.332 26.1534 27.333C26.7319 27.333 27.2175 26.882 27.239 26.3008ZM33.9328 36.318C33.0412 36.2251 32.1037 36.7398 31.1709 36.8345C28.3303 37.1251 25.785 36.3339 23.6859 34.3923C19.695 30.7005 20.265 25.0398 24.8831 22.0145C28.9875 19.3258 35.0072 20.222 37.9003 23.9523C40.4259 27.2083 40.1287 31.5301 37.0462 34.2658C35.6072 35.5417 36.2109 35.9486 36.585 37.4317C35.7562 37.0633 34.8375 36.4126 33.9328 36.318Z"
+                            fill="white"
+                          />
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear_16_177"
+                              x1="6.35906"
+                              y1="7.72687"
+                              x2="44.4553"
+                              y2="36.5606"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stop-color="#3CAF41" />
+                              <stop offset="1" stop-color="#58C72C" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
+                      <div
+                        class="font-montserrat text-sm font-semibold text-white"
+                      >
+                        SANBRAZI
+                      </div>
+                    </div></a
+                  >
+                  <a
+                    href="#"
+                    class="block px-4 py-2 text-sm text-gray-700 transition duration-150 ease-in-out"
+                  >
+                    <div class="flex justify-center">
+                      <img src="./src/img/raynoqr.png" alt="" />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button
+                @click="open = !open"
+                class="focus:shadow-solid flex max-w-xs items-center justify-center rounded-full border-2 text-sm text-white transition duration-150 ease-in-out focus:outline-none"
+              >
+                <img class="w-12" src="./src/img/buuble.png" alt="" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <script type="text/javascript">
+      const callback = function (entries) {
+        entries.forEach((entry) => {
+          console.log(entry);
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-fadeIn");
+          } else {
+            entry.target.classList.remove("animate-fadeIn");
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(callback);
+
+      const targets = document.querySelectorAll(".js-show-on-scroll");
+      targets.forEach(function (target) {
+        target.classList.add("opacity-0");
+        observer.observe(target);
+      });
+    </script>
+  </body>
+</html>

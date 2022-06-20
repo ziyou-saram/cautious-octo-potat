@@ -1,0 +1,24 @@
+@tailwind base;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Syne:wght@700&display=swap');
+.delay-1500 {
+  animation-name: move;
+  animation-delay: 1500ms;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes move {
+  from {
+    left: 0px;
+  }
+  to {
+    left: 400px;
+  }
+}
+.title {
+  font-family: 'Syne', sans-serif;
+}
+p, a {
+  font-family: 'Montserrat', sans-serif;
+}
+@tailwind components;
+@tailwind utilities;
